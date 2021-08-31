@@ -3,9 +3,9 @@
 This is a program for interacting with a bank account.
 
 ## Set up
-This program runs in the command line. Once you have Forked/Cloned this repo, simply open up irb and run:
+Once you have Forked/Cloned this repo run:
 ```
-> require './lib/bank_account.rb'
+> bundle
 ```
 Check the [How to use](#how-to-use) section for further details on how to interact with the program.
 
@@ -16,7 +16,11 @@ Run:
 ```
 
 ## How to use
-Once you have opened irb and required the correct file (shown in [Set up](#set-up)), you will then need to create an BankAccount. It is best if you save one to memory by storing it in a variable:
+This program runs in the command line, to start simply open up irb and run:
+```
+> require './lib/bank_account.rb'
+```
+You will then need to create an BankAccount. It is best if you save one to memory by storing it in a variable:
 ```
 > account = BankAccount.new
 ```
