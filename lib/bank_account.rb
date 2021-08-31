@@ -10,4 +10,8 @@ class BankAccount
   def withdraw(amount)
     @balance -= amount
   end
+
+  def statement
+    print "date || credit || debit || balance"
+  end
 end

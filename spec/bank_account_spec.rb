@@ -27,4 +27,10 @@ describe BankAccount do
       expect(subject.instance_variable_get(:@balance)).to eq(500)
     end
   end
+
+  describe "#statement" do
+    it "should print collumn headers" do
+      expect{ subject.statement }.to output("date || credit || debit || balance").to_stdout
+    end 
+  end
 end
