@@ -13,6 +13,7 @@ class BankAccount
   end
 
   def withdraw(amount)
+    raise "Cannot withdraw less than 1p" if not_valid?(amount)
     @balance -= amount
     update_statement(debit: amount)
   end

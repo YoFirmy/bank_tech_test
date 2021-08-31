@@ -30,6 +30,10 @@ describe BankAccount do
       subject.withdraw(500)
       expect(subject.instance_variable_get(:@balance)).to eq(500)
     end
+
+    it "should raise error if less than 0.01 is given as amount" do
+      expect{ subject.withdraw(0) }.to raise_error("Cannot withdraw less than 1p")
+    end
   end
 
   describe "#statement" do
