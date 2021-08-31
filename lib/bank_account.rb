@@ -1,33 +1,39 @@
 class BankAccount
+  HEADER = "date || credit || debit || balance"
+
   def initialize
     @balance = 0.0
-    @statement = "date || credit || debit || balance"
+    @statement = [HEADER]
   end
 
   def deposit(amount)
     @balance += amount
-    update_statement(deposited: amount)
+    update_statement(credit: amount)
   end
 
   def withdraw(amount)
     @balance -= amount
-    update_statement(withdrawn: amount)
+    update_statement(debit: amount)
   end
 
   def statement
-    print @statement
+    print @statement.join("\n")
   end
 
   private
 
-  def update_statement(deposited: nil, withdrawn: nil)
+  def update_statement(credit: nil, debit: nil)
     date = get_date
-    insert = deposited ? "#{sprintf('%.2f', deposited)} ||" : "|| #{sprintf('%.2f', withdrawn)}"
-    @statement += "\n#{date} || #{insert} || #{sprintf('%.2f', @balance)}"
+    credit_or_debit = get_credit_or_debit(credit, debit)
+    @statement.insert(1, "#{date} || #{credit_or_debit} || #{sprintf('%.2f', @balance)}")
   end
 
   def get_date
     time = Time.now
     "#{time.day.to_s.rjust(2, "0")}/#{time.month.to_s.rjust(2, "0")}/#{time.year.to_s}"
+  end
+
+  def get_credit_or_debit(credit, debit)
+    credit ? "#{sprintf('%.2f', credit)} ||" : "|| #{sprintf('%.2f', debit)}"
   end
 end

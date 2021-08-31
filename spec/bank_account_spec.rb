@@ -50,5 +50,11 @@ describe BankAccount do
       subject.withdraw(500)
       expect{ subject.statement }.to output("#{HEADER}\n#{@date} || || 500.00 || -500.00").to_stdout
     end
+
+    it "should include transactions with the latest at the top" do
+      subject.deposit(1000)
+      subject.withdraw(500)
+      expect{ subject.statement }.to output("#{HEADER}\n#{@date} || || 500.00 || 500.00\n#{@date} || 1000.00 || || 1000.00").to_stdout
+    end
   end
 end

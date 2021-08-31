@@ -23,10 +23,15 @@ Once you have opened irb and required the correct file (shown in [Set up](#set-u
 You can then deposit an amount:
 ```
 > account.deposit(1000)
- => 1000
 ```
 You can also withdraw an amount:
 ```
-> account.deposit(250)
- => 750
+> account.withdraw(250)
+```
+And you can view a statement:
+```
+> account.statement
+ => date || credit || debit || balance
+    31/08/2021 || || 250.00 || 750.00
+    31/08/2021 || 1000.00 || || 1000.00
 ```
