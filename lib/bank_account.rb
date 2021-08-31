@@ -7,6 +7,7 @@ class BankAccount
   end
 
   def deposit(amount)
+    raise "Cannot deposit less than 1p" if not_valid?(amount)
     @balance += amount
     update_statement(credit: amount)
   end
@@ -35,5 +36,9 @@ class BankAccount
 
   def get_credit_or_debit(credit, debit)
     credit ? "#{sprintf('%.2f', credit)} ||" : "|| #{sprintf('%.2f', debit)}"
+  end
+
+  def not_valid?(amount)
+    amount < 0.01
   end
 end
