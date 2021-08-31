@@ -29,8 +29,21 @@ describe BankAccount do
   end
 
   describe "#statement" do
+    HEADER = "date || credit || debit || balance"
+
+    before(:each) do
+      time = Time.now
+      @date = "#{time.day.to_s.rjust(2, "0")}/#{time.month.to_s.rjust(2, "0")}/#{time.year.to_s}"
+      allow(Time).to receive(:now).and_return(time)
+    end
+
     it "should print collumn headers" do
-      expect{ subject.statement }.to output("date || credit || debit || balance").to_stdout
+      expect{ subject.statement }.to output(HEADER).to_stdout
     end 
+
+    it "should print out a debit after a deposit" do
+      subject.deposit(500)
+      expect{ subject.statement }.to output("#{HEADER}\n#{@date} || 500.00 || || 500.00").to_stdout
+    end
   end
 end
