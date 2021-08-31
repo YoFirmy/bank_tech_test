@@ -7,13 +7,13 @@ class BankAccount
   end
 
   def deposit(amount)
-    raise "Cannot deposit less than 1p" if not_valid?(amount)
+    check_valid(amount)
     @balance += amount
     update_statement(credit: amount)
   end
 
   def withdraw(amount)
-    raise "Cannot withdraw less than 1p" if not_valid?(amount)
+    check_valid(amount)
     @balance -= amount
     update_statement(debit: amount)
   end
@@ -39,7 +39,15 @@ class BankAccount
     credit ? "#{sprintf('%.2f', credit)} ||" : "|| #{sprintf('%.2f', debit)}"
   end
 
-  def not_valid?(amount)
-    amount < 0.01
+  def check_valid(amount)
+    raise "That is not a valid amount" if more_than_two_decimal_places(amount) || less_than_one_pence(amount)
+  end
+
+  def less_than_one_pence(amount)
+    amount <= 0
+  end
+
+  def more_than_two_decimal_places(amount)
+    (amount * 1.0).to_s.split('.').last.length > 2
   end
 end

@@ -20,7 +20,11 @@ describe BankAccount do
     end
 
     it "should raise error if less than 0.01 is given as amount" do
-      expect{ subject.deposit(0) }.to raise_error("Cannot deposit less than 1p")
+      expect{ subject.deposit(0) }.to raise_error("That is not a valid amount")
+    end
+
+    it "should raise error if more than 2 decimal places" do
+      expect{ subject.deposit(1.005) }.to raise_error("That is not a valid amount")
     end
   end
 
@@ -32,7 +36,7 @@ describe BankAccount do
     end
 
     it "should raise error if less than 0.01 is given as amount" do
-      expect{ subject.withdraw(0) }.to raise_error("Cannot withdraw less than 1p")
+      expect{ subject.withdraw(0) }.to raise_error("That is not a valid amount")
     end
   end
 
