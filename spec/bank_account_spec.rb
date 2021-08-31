@@ -12,5 +12,11 @@ describe BankAccount do
     it "should have a balance of 0 when initialized" do
       expect(subject.instance_variable_get(:@balance)).to eq(0)
     end
+
+    it "should update correctly after multiple deposits" do
+      subject.deposit(1000)
+      subject.deposit(500)
+      expect(subject.instance_variable_get(:@balance)).to eq(1500)
+    end
   end
 end
