@@ -41,9 +41,14 @@ describe BankAccount do
       expect{ subject.statement }.to output(HEADER).to_stdout
     end 
 
-    it "should print out a debit after a deposit" do
+    it "should print out a credit after a deposit" do
       subject.deposit(500)
       expect{ subject.statement }.to output("#{HEADER}\n#{@date} || 500.00 || || 500.00").to_stdout
+    end
+
+    it "should print out a debit after a deposit" do
+      subject.withdraw(500)
+      expect{ subject.statement }.to output("#{HEADER}\n#{@date} || || 500.00 || -500.00").to_stdout
     end
   end
 end

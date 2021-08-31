@@ -6,11 +6,12 @@ class BankAccount
 
   def deposit(amount)
     @balance += amount
-    update_statement(amount)
+    update_statement(deposited: amount)
   end
 
   def withdraw(amount)
     @balance -= amount
+    update_statement(withdrawn: amount)
   end
 
   def statement
@@ -19,9 +20,10 @@ class BankAccount
 
   private
 
-  def update_statement(amount)
+  def update_statement(deposited: nil, withdrawn: nil)
     date = get_date
-    @statement += "\n#{date} || #{sprintf('%.2f', amount)} || || #{sprintf('%.2f', @balance)}"
+    insert = deposited ? "#{sprintf('%.2f', deposited)} ||" : "|| #{sprintf('%.2f', withdrawn)}"
+    @statement += "\n#{date} || #{insert} || #{sprintf('%.2f', @balance)}"
   end
 
   def get_date
