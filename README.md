@@ -9,10 +9,16 @@ Once you have Forked/Cloned this repo run:
 ```
 Check the [How to use](#how-to-use) section for further details on how to interact with the program.
 
-## Running-tests
+## Running tests
 Run:
 ```
 % rspec
+```
+
+## Running linting
+Run:
+```
+% rubocop
 ```
 
 ## How to use

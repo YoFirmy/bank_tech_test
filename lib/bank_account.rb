@@ -1,5 +1,5 @@
 class BankAccount
-  HEADER = "date || credit || debit || balance"
+  HEADER = 'date || credit || debit || balance'
 
   def initialize
     @balance = 0.0
@@ -25,22 +25,26 @@ class BankAccount
   private
 
   def update_statement(credit: nil, debit: nil)
-    date = get_date
+    date = format_date
     credit_or_debit = get_credit_or_debit(credit, debit)
-    @statement.insert(1, "#{date} || #{credit_or_debit} || #{sprintf('%.2f', @balance)}")
+    @statement.insert(1, "#{date} || #{credit_or_debit} || #{format('%.2f', @balance)}")
   end
 
-  def get_date
+  def format_date
     time = Time.now
-    "#{time.day.to_s.rjust(2, "0")}/#{time.month.to_s.rjust(2, "0")}/#{time.year.to_s}"
+    "#{time.day.to_s.rjust(2, '0')}/#{time.month.to_s.rjust(2, '0')}/#{time.year}"
   end
 
   def get_credit_or_debit(credit, debit)
-    credit ? "#{sprintf('%.2f', credit)} ||" : "|| #{sprintf('%.2f', debit)}"
+    credit ? "#{format('%.2f', credit)} ||" : "|| #{format('%.2f', debit)}"
   end
 
   def check_valid(amount)
-    raise "That is not a valid amount" if more_than_two_decimal_places(amount) || less_than_one_pence(amount)
+    raise 'That is not a valid amount' if not_valid?(amount)
+  end
+
+  def not_valid?(amount)
+    more_than_two_decimal_places(amount) || less_than_one_pence(amount)
   end
 
   def less_than_one_pence(amount)
