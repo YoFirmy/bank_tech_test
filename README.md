@@ -1,6 +1,6 @@
 # Bank Program
 
-This is a program for interacting with a bank account. I used a TDD process to create this program, writing out what commands I wanted the program to respond to in a manual feature test in irb first. After writting unit tests to match the failing feature tests, passing these tests and repeating this cycle gave me a program that I think is very intuitive to use.
+This is a program for interacting with a bank account. I used a TDD process to create this program, writing out what commands I wanted the program to respond to in a manual feature test in irb first. After writting unit tests to match the failing feature tests, passing these tests and repeating this cycle gave me a program that I think is very intuitive to use. I did split the BankAccount class into 2 (creating a statement class) as it felt that the first had to manmy responsibilities. Now the BankAccount class has the responsibility of updating balance based on transactions, and the Statement class has the responsibility of storing and displaying those transactions.
 
 ## Set up
 Once you have Forked/Cloned this repo run:
@@ -45,3 +45,6 @@ And you can view a statement:
     31/08/2021 || || 250.00 || 750.00
     31/08/2021 || 1000.00 || || 1000.00
 ```
+## Example
+
+<img alt="Screenshot of app running" src="/images/screenshot_of_irb.png"/>
