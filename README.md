@@ -1,6 +1,6 @@
 # Bank Program
 
-This is a program for interacting with a bank account.
+This is a program for interacting with a bank account. I used a TDD process to create this program, writing out what commands I wanted the program to respond to in a manual feature test in irb first. After writting unit tests to match the failing feature tests, passing these tests and repeating this cycle gave me a program that I think is very intuitive to use.
 
 ## Set up
 Once you have Forked/Cloned this repo run:
